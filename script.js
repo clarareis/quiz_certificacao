@@ -1,207 +1,153 @@
-// ===============================
-// CONFIGURAÇÃO DE CURSOS E IDIOMAS
-// ===============================
-const idiomasPorCurso = {
-  especialistaOS: ["EN", "PTBR"],
-  agenteIA: ["EN"]
-};
+const perguntas = [
+  // ===============================
+  // Tema: Architectural Patterns (7 questões)
+  // ===============================
+  {
+    texto: `Which architectural pattern describes a complex task broken down into smaller steps, where each step is handled sequentially by specialized agents and the output of one becomes the input of the next?`,
+    opcoes: ["Loop Flow", "Sequential Flow", "Parallel Flow", "Hierarchical Flow"],
+    correta: 1,
+    explicacao: "Sequential Flow is highly modular, with each agent processing a step in sequence and passing its output forward.",
+    tema: "Architectural Patterns"
+  },
+  {
+    texto: `In which flow do agents work together on a shared task, iteratively improving and critiquing each other's outputs until an acceptance condition is met?`,
+    opcoes: ["Loop Flow", "Parallel Flow", "Shared Memory Flow", "Human-in-the-loop Flow"],
+    correta: 0,
+    explicacao: "Loop Flow involves agents iterating over a task, with one proposing improvements and another critiquing until the condition is satisfied.",
+    tema: "Architectural Patterns"
+  },
+  {
+    texto: `Which architectural pattern allows tasks to be executed simultaneously by multiple agents, improving efficiency for independent subtasks?`,
+    opcoes: ["Sequential Flow", "Parallel Flow", "Hierarchical Flow", "Loop Flow"],
+    correta: 1,
+    explicacao: "Parallel Flow enables multiple agents to work concurrently on independent subtasks.",
+    tema: "Architectural Patterns"
+  },
+  {
+    texto: `Which architectural pattern organizes agents in a tree-like structure, where higher-level agents supervise and delegate tasks to lower-level agents?`,
+    opcoes: ["Hierarchical Flow", "Sequential Flow", "Parallel Flow", "Shared Memory Flow"],
+    correta: 0,
+    explicacao: "Hierarchical Flow uses a tree structure with supervisors delegating tasks to specialized agents.",
+    tema: "Architectural Patterns"
+  },
+  {
+    texto: `Which architectural pattern uses a shared memory space where agents contribute and refine information collaboratively?`,
+    opcoes: ["Shared Memory Flow", "Loop Flow", "Sequential Flow", "Parallel Flow"],
+    correta: 0,
+    explicacao: "Shared Memory Flow allows agents to iteratively refine outputs in a common workspace.",
+    tema: "Architectural Patterns"
+  },
+  {
+    texto: `Which architectural pattern integrates human feedback into the agent workflow to validate or adjust outputs?`,
+    opcoes: ["Human-in-the-loop Flow", "Sequential Flow", "Parallel Flow", "Loop Flow"],
+    correta: 0,
+    explicacao: "Human-in-the-loop Flow ensures human oversight and validation during agent execution.",
+    tema: "Architectural Patterns"
+  },
+  {
+    texto: `Which architectural pattern is best suited for tasks requiring iterative refinement until a quality threshold is met?`,
+    opcoes: ["Loop Flow", "Parallel Flow", "Hierarchical Flow", "Sequential Flow"],
+    correta: 0,
+    explicacao: "Loop Flow is ideal for iterative refinement with agents critiquing and improving outputs.",
+    tema: "Architectural Patterns"
+  },
 
-let cursoEscolhido = "";
-let idiomaEscolhido = "";
-let perguntasSelecionadas = [];
+  // ===============================
+  // Tema: Agent Roles (7 questões)
+  // ===============================
+  {
+    texto: `Which agent receives multiple inputs and unifies them into a single output, applying logic to filter, rank, and combine information?`,
+    opcoes: ["Router Agent", "Supervisor Agent", "Aggregator Agent", "Dispatcher Agent"],
+    correta: 2,
+    explicacao: "The Aggregator Agent consolidates multiple inputs into one coherent output.",
+    tema: "Agent Roles"
+  },
+  {
+    texto: `Which agent analyzes requests and divides them into multiple outputs depending on criteria, effectively routing tasks to specialized agents?`,
+    opcoes: ["Supervisor Agent", "Router/Dispatcher Agent", "Aggregator Agent", "Human-in-the-loop Agent"],
+    correta: 1,
+    explicacao: "The Router/Dispatcher Agent classifies the scope and distributes tasks accordingly.",
+    tema: "Agent Roles"
+  },
+  {
+    texto: `Which agent oversees the execution of tasks, ensuring that subtasks are completed and coordinating between agents?`,
+    opcoes: ["Supervisor Agent", "Router Agent", "Aggregator Agent", "Dispatcher Agent"],
+    correta: 0,
+    explicacao: "The Supervisor Agent manages task execution and coordinates agents.",
+    tema: "Agent Roles"
+  },
+  {
+    texto: `Which agent is responsible for introducing human validation into the workflow?`,
+    opcoes: ["Human-in-the-loop Agent", "Router Agent", "Supervisor Agent", "Aggregator Agent"],
+    correta: 0,
+    explicacao: "The Human-in-the-loop Agent integrates human oversight into the process.",
+    tema: "Agent Roles"
+  },
+  {
+    texto: `Which agent specializes in distributing tasks to multiple agents simultaneously?`,
+    opcoes: ["Dispatcher Agent", "Supervisor Agent", "Aggregator Agent", "Router Agent"],
+    correta: 0,
+    explicacao: "The Dispatcher Agent distributes tasks to multiple agents for parallel execution.",
+    tema: "Agent Roles"
+  },
+  {
+    texto: `Which agent is best suited for filtering and ranking multiple candidate outputs before producing a final answer?`,
+    opcoes: ["Aggregator Agent", "Supervisor Agent", "Router Agent", "Human-in-the-loop Agent"],
+    correta: 0,
+    explicacao: "The Aggregator Agent consolidates and ranks multiple outputs.",
+    tema: "Agent Roles"
+  },
+  {
+    texto: `Which agent decides which specialized agent should handle a given request based on its type?`,
+    opcoes: ["Router Agent", "Supervisor Agent", "Aggregator Agent", "Dispatcher Agent"],
+    correta: 0,
+    explicacao: "The Router Agent directs requests to the appropriate specialized agent.",
+    tema: "Agent Roles"
+  },
 
-// ===============================
-// FLUXO DE INICIALIZAÇÃO
-// ===============================
-
-// Popula idiomas ao escolher curso
-document.getElementById("curso").addEventListener("change", e => {
-  cursoEscolhido = e.target.value;
-  const idiomaSelect = document.getElementById("idioma");
-  idiomaSelect.innerHTML = "";
-
-  if (cursoEscolhido && idiomasPorCurso[cursoEscolhido]) {
-    // adiciona a opção padrão
-    const optDefault = document.createElement("option");
-    optDefault.value = "";
-    optDefault.textContent = "-- selecione --";
-    idiomaSelect.appendChild(optDefault);
-
-    idiomasPorCurso[cursoEscolhido].forEach(idioma => {
-      const opt = document.createElement("option");
-      opt.value = idioma;
-      opt.textContent = idioma;
-      idiomaSelect.appendChild(opt);
-    });
-    idiomaSelect.disabled = false;
-  } else {
-    idiomaSelect.disabled = true;
+  // ===============================
+  // Tema: ODC Implementation (6 questões)
+  // ===============================
+  {
+    texto: `Which workflow element in ODC should be added to implement parallel flows, allowing tasks to run asynchronously?`,
+    opcoes: ["Decision (If)", "Parallel", "Human Activity", "Automatic Activity"],
+    correta: 1,
+    explicacao: "The Parallel element defines parallel paths in the workflow, enabling asynchronous execution.",
+    tema: "ODC Implementation"
+  },
+  {
+    texto: `Which ODC element is used to branch execution based on conditions?`,
+    opcoes: ["Decision (If)", "Parallel", "Human Activity", "Automatic Activity"],
+    correta: 0,
+    explicacao: "The Decision element allows conditional branching in workflows.",
+    tema: "ODC Implementation"
+  },
+  {
+    texto: `Which ODC element assigns a task to a human user for validation or input?`,
+    opcoes: ["Human Activity", "Automatic Activity", "Parallel", "Decision (If)"],
+    correta: 0,
+    explicacao: "Human Activity assigns tasks to users for manual input or validation.",
+    tema: "ODC Implementation"
+  },
+  {
+    texto: `Which ODC element executes a task automatically without human intervention?`,
+    opcoes: ["Automatic Activity", "Human Activity", "Parallel", "Decision (If)"],
+    correta: 0,
+    explicacao: "Automatic Activity executes tasks automatically.",
+    tema: "ODC Implementation"
+  },
+  {
+    texto: `Which ODC element is best suited for implementing asynchronous background processes?`,
+    opcoes: ["Automatic Activity", "Parallel", "Human Activity", "Decision (If)"],
+    correta: 0,
+    explicacao: "Automatic Activity can be used for background processes.",
+    tema: "ODC Implementation"
+  },
+  {
+    texto: `Which ODC element allows combining multiple paths back into a single flow after parallel execution?`,
+    opcoes: ["Join", "Parallel", "Decision (If)", "Human Activity"],
+    correta: 0,
+    explicacao: "The Join element synchronizes parallel paths back into one flow.",
+    tema: "ODC Implementation"
   }
-});
-
-document.getElementById("idioma").addEventListener("change", () => {
-  const idioma = document.getElementById("idioma").value;
-  document.getElementById("btnIniciar").disabled = idioma === "";
-});
-
-document.getElementById("btnIniciar").addEventListener("click", iniciarQuiz);
-
-// ===============================
-// INICIAR QUIZ OFICIAL
-// ===============================
-function iniciarQuiz() {
-  cursoEscolhido = document.getElementById("curso").value;
-  idiomaEscolhido = document.getElementById("idioma").value;
-
-  const msg = mensagens[idiomaEscolhido];
-
-  document.getElementById("tituloQuiz").textContent = msg.tituloQuiz;
-  document.getElementById("btnFinalizar").textContent = msg.finalizar;
-
-  document.querySelector(".container").style.display = "block";
-  document.getElementById("cronometro").style.display = "block";
-  document.getElementById("barraProgresso").style.display = "block";
-  document.getElementById("config").style.display = "none";
-
-  // caminho dinâmico: cursos/<curso>/perguntas_<curso>_<idioma>.js
-  const script = document.createElement("script");
-  script.src = `cursos/${cursoEscolhido}/perguntas_${cursoEscolhido}_${idiomaEscolhido}.js`;
-  script.onload = () => {
-    if (!Array.isArray(perguntas) || perguntas.length === 0) {
-      alert(msg.erroArray);
-      return;
-    }
-    perguntasSelecionadas = selecionarQuestoesPorTema(perguntas, distribuicaoOficial);
-    renderizarQuiz();
-    iniciarCronometro(90 * 60, document.getElementById("tempo"));
-
-    // salva curso e idioma escolhidos
-    localStorage.setItem("curso", cursoEscolhido);
-    localStorage.setItem("idioma", idiomaEscolhido);
-  };
-  script.onerror = () => {
-    alert(`Erro ao carregar perguntas para ${cursoEscolhido} em ${idiomaEscolhido}`);
-  };
-  document.body.appendChild(script);
-}
-
-// ===============================
-// FUNÇÕES DE APOIO
-// ===============================
-function renderizarQuiz() {
-  const form = document.getElementById("quizForm");
-  form.innerHTML = "";
-
-  if (!perguntasSelecionadas || perguntasSelecionadas.length === 0) {
-    alert("⚠️ Nenhuma pergunta foi selecionada.");
-    return;
-  }
-
-  perguntasSelecionadas.forEach((pergunta, index) => {
-    const div = document.createElement("div");
-    div.className = "question";
-    div.innerHTML = `<h3>${index + 1}. ${pergunta.texto}</h3>`;
-    pergunta.opcoes.forEach((opcao, i) => {
-      div.innerHTML += `
-        <label>
-          <input type="radio" name="q${index}" value="${i}" />
-          ${opcao}
-        </label><br>`;
-    });
-    form.appendChild(div);
-  });
-}
-
-function embaralhar(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-
-const distribuicaoOficial = {
-  "Best Practices": 15,
-  "Screens": 4,
-  "Data": 4,
-  "Queries": 3,
-  "Logic": 4,
-  "Troubleshooting": 4,
-  "Integrations": 4,
-  "External Databases": 2,
-  "REST APIs": 2,
-  "Exception/Transaction Handling": 2,
-  "Asynchronous Processes": 4,
-  "Work in Teams": 1
-};
-
-function iniciarCronometro(duracao, display) {
-  let tempo = duracao;
-  const btnFinalizar = document.getElementById("btnFinalizar");
-
-  const intervalo = setInterval(() => {
-    const minutos = Math.floor(tempo / 60);
-    const segundos = tempo % 60;
-    display.textContent = `${minutos}:${segundos < 10 ? "0" : ""}${segundos}`;
-
-    const progresso = document.getElementById("progresso");
-    const porcentagem = (tempo / duracao) * 100;
-    progresso.style.width = `${porcentagem}%`;
-
-    if (tempo <= 5 * 60) {
-      btnFinalizar.classList.add("piscar");
-    }
-
-    if (--tempo < 0) {
-      clearInterval(intervalo);
-      validarQuiz();
-      btnFinalizar.disabled = true;
-      btnFinalizar.classList.remove("piscar");
-      alert(mensagens[idiomaEscolhido].tempoEsgotado);
-    }
-  }, 1000);
-}
-
-function selecionarQuestoesPorTema(perguntas, distribuicao) {
-  const selecionadas = [];
-  for (const tema in distribuicao) {
-    const quantidade = distribuicao[tema];
-    const filtradas = perguntas.filter(p => p.tema === tema);
-    if (filtradas.length === 0) continue;
-    const embaralhadas = embaralhar([...filtradas]).slice(0, quantidade);
-    selecionadas.push(...embaralhadas);
-  }
-  return embaralhar([...selecionadas]).slice(0, 30);
-}
-
-function validarQuiz() {
-  let acertos = 0;
-  perguntasSelecionadas.forEach((pergunta, index) => {
-    const selecionada = document.querySelector(`input[name="q${index}"]:checked`);
-    pergunta.escolhida = selecionada ? parseInt(selecionada.value) : null;
-    if (pergunta.escolhida === pergunta.correta) acertos++;
-  });
-
-  const total = perguntasSelecionadas.length;
-  const pontuacaoFinal = (acertos / total) * 100;
-
-  localStorage.setItem("pontuacaoFinal", pontuacaoFinal.toFixed(2));
-  localStorage.setItem("passou", pontuacaoFinal >= 70);
-  localStorage.setItem("perguntasSelecionadas", JSON.stringify(perguntasSelecionadas));
-
-  const msg = mensagens[idiomaEscolhido];
-  const resultado = document.getElementById("resultado");
-  resultado.innerHTML = `
-    <div class="resposta-card ${pontuacaoFinal >= 70 ? 'correta' : 'errada'}">
-      <h3>${msg.resultadoTitulo}</h3>
-      <p>${acertos}/${total} (${pontuacaoFinal.toFixed(2)}%)</p>
-      <p>${pontuacaoFinal >= 70 ? msg.passou : msg.naoPassou}</p>
-      <button type="button" onclick="reiniciarQuiz()">${msg.novoTeste}</button>
-      <button type="button" onclick="window.location.href='respostas.html'">${msg.respostaerrada}</button>
-    </div>
-  `;
-}
-
-function reiniciarQuiz() {
-  location.reload();
-}
+];
