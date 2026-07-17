@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quiz Certificação</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Configuração inicial -->
+  <div id="config">
+    <h2>Configuração do Quiz</h2>
+
+    <!-- 1. Escolha do curso/teste -->
+    <label for="curso">Escolha o teste:</label>
+    <select id="curso">
+      <option value="">-- selecione --</option>
+      <option value="especialistaOS">Especialista OutSystems</option>
+      <option value="agenteIA">Agente de IA</option>
+    </select>
+
+    <!-- 2. Escolha do idioma -->
+    <label for="idioma">Escolha o idioma:</label>
+    <select id="idioma" disabled>
+      <option value="">-- selecione --</option>
+    </select>
+
+    <button id="btnIniciar" type="button" disabled>Iniciar Quiz</button>
+  </div>
+
+  <!-- Barra de topo (inicialmente escondida) -->
+  <div id="cronometro" style="display:none;">Tempo restante: <span id="tempo">90:00</span></div>
+  <div id="barraProgresso" style="display:none;"><div id="progresso"></div></div>
+
+  <!-- Conteúdo central (inicialmente escondido) -->
+  <div class="container" style="display:none;">
+    <h1 id="tituloQuiz"></h1>
+    <form id="quizForm"></form>
+    <button type="button" onclick="validarQuiz()" id="btnFinalizar">Finalizar Teste</button>
+    <div id="resultado"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="mensagens.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

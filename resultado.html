@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Resultado Final</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="resultado"></div>
+
+  <script src="mensagens.js"></script>
+  <script>
+    const pontuacaoFinal = localStorage.getItem("pontuacaoFinal");
+    const passou = localStorage.getItem("passou") === "true";
+    const curso = localStorage.getItem("curso") || "";
+    const idioma = localStorage.getItem("idioma") || "PTBR";
+
+    const msg = mensagens[idioma] || mensagens.PTBR;
+
+    document.getElementById("resultado").innerHTML = `
+      <h3>${msg.resultadoTitulo} (${curso} - ${idioma})</h3>
+      <p>${msg.passou}: ${pontuacaoFinal}%</p>
+      <p>${passou ? msg.passou : msg.naoPassou}</p>
+      <button onclick="window.location.href='respostas.html'">${msg.respostaerrada}</button>
+      <button onclick="window.location.href='index.html'">${msg.novoTeste}</button>
+    `;
+  </script>
+</body>
+</html>

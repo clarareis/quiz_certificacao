@@ -1,0 +1,144 @@
+/* Fonte e fundo geral */
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #f0f4f8, #e6ecf3);
+  color: #333;
+}
+
+/* Cabeçalhos */
+h1, h2, h3 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+/* Container principal */
+.container, #config {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Labels e selects */
+label {
+  display: block;
+  margin: 15px 0 5px;
+  font-weight: 600;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  background: #fafafa;
+  transition: border-color 0.3s;
+}
+
+select:focus {
+  border-color: #0078d7;
+  outline: none;
+}
+
+/* Botões */
+button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: #0078d7;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background: #005a9e;
+  transform: translateY(-2px);
+}
+
+/* Perguntas */
+.question {
+  margin-bottom: 20px;
+  padding: 20px;
+  background: #fdfdfd;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  transition: box-shadow 0.3s;
+}
+
+.question:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Cronômetro e barra de progresso */
+#cronometro {
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 16px;
+}
+
+#barraProgresso {
+  width: 100%;
+  background: #e0e0e0;
+  height: 12px;
+  border-radius: 6px;
+  margin-bottom: 25px;
+}
+
+#progresso {
+  height: 12px;
+  background: #0078d7;
+  width: 100%;
+  border-radius: 6px;
+  transition: width 0.5s;
+}
+
+/* Resultado */
+.resposta-card {
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 16px;
+}
+
+.resposta-card.correta {
+  background: #28a745;
+}
+
+.resposta-card.errada {
+  background: #dc3545;
+}
+
+/* Respostas erradas */
+.resposta-errada {
+  margin-bottom: 20px;
+  padding: 20px;
+  background: #fff5f5;
+  border: 1px solid #f5c2c2;
+  border-radius: 8px;
+}
+
+/* Animação piscar */
+.piscar {
+  animation: piscar 1s infinite;
+}
+
+@keyframes piscar {
+  0% { background-color: #0078d7; }
+  50% { background-color: #dc3545; }
+  100% { background-color: #0078d7; }
+}
